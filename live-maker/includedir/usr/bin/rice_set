@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Ruta del archivo de marca
+MARKER_FILE="$HOME/.rices.set"
+
+runn(){
+# Aplicar configuración de apariencia personalizada para MATE
+xdg-user-dirs-update && xdg-user-dirs-update --force
+gsettings set org.mate.caja-open-terminal desktop-opens-home-dir true
+
+# Tema GTK y Marco: Juno
+gsettings set org.mate.interface gtk-theme "Juno"
+gsettings set org.mate.Marco.general theme "Juno"
+
+# Tema de iconos: pixelitos-dark
+gsettings set org.mate.interface icon-theme "pixelitos-dark"
+
+# Tema de cursor: Bibata-Gruvbox
+gsettings set org.mate.peripherals-mouse cursor-theme "Bibata-Gruvbox"
+
+# Fondo de pantalla
+gsettings set org.mate.background picture-filename "/usr/share/wallpapers/edernity.png"
+gsettings set org.mate.background picture-options "zoom"  
+# Opciones: none, wallpaper, centered, scaled, stretched, zoom, spanned
+
+# Crear el archivo de marca para evitar reejecución
+touch "$MARKER_FILE"
+
+echo "✓ Apariencia MATE configurada: Juno + pixelitos-dark + Bibata-Gruvbox + edernity.png"
+}
+
+# Verificar si ya se ejecutó la configuración
+if [ -f "$MARKER_FILE" ]; then
+    echo "✓ La configuración de apariencia ya fue aplicada (archivo $MARKER_FILE encontrado)."
+else
+runn
+fi
+

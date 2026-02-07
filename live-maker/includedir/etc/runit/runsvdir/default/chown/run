@@ -1,0 +1,41 @@
+#!/bin/bash
+# /etc/sv/user-dirs-fix/run - Versión simplificada
+
+exec 2>&1
+
+# Esperar un poco al inicio
+sleep 3
+
+# Directorios principales a corregir
+MAIN_DIRS=".themes .icons .profile"
+
+# Procesar cada usuario
+for user_home in /home/*/; do
+    user=$(basename "$user_home")
+    
+    # Validar usuario
+    [ -z "$user" ] || [ "$user" = "root" ] || ! id "$user" >/dev/null 2>&1 && continue
+    
+    chown -R $user  "$user_home/.profile"   
+    chown -R "$user:$user" "$user_home/.icons" 2>/dev/null
+    # Corregir directorios principales
+    for dir in $MAIN_DIRS; do
+        dir_path="$user_home/$dir"
+        if [ -d "$dir_path" ]; then
+            chown -R "$user:$user" "$dir_path" 2>/dev/null 
+        fi
+    done
+    
+    # Corregir todo .config recursivamente (para asegurar caja y otros)
+    if [ -d "$user_home/.config" ]; then
+        find "$user_home/.config" -type d -name "caja" -exec chown -R "$user:$user" {} \; 2>/dev/null
+    fi
+
+    # Corregir todo .local recursivamente
+    if [ -d "$user_home/.local" ]; then
+        chown -R "$user:$user" "$user_home/.local" 2>/dev/null
+    fi
+    done
+
+
+exit 0
