@@ -1,1 +1,0 @@
-Ejecuta el make.sh para crear tu iso live de void con JWM y en includedir puedes agregar tus configs y archivos etc

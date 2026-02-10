@@ -29,15 +29,6 @@
     <artist>Jens Ansorg</artist>
   </wallpaper>
   <wallpaper deleted="false">
-    <name>1313622.png</name>
-    <filename>/home/javierc/Pictures/1313622.png</filename>
-    <options>zoom</options>
-    <shade_type>vertical-gradient</shade_type>
-    <pcolor>rgb(114,159,207)</pcolor>
-    <scolor>rgb(0,0,0)</scolor>
-    <artist>(none)</artist>
-  </wallpaper>
-  <wallpaper deleted="false">
     <name>Dune</name>
     <filename>/usr/share/backgrounds/mate/nature/Dune.jpg</filename>
     <options>zoom</options>
@@ -135,6 +126,15 @@
     <pcolor>rgb(88,145,188)</pcolor>
     <scolor>rgb(60,143,37)</scolor>
     <artist>Goce Mitevski</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>neko.png</name>
+    <filename>/usr/share/wallpapers/neko.png</filename>
+    <options>zoom</options>
+    <shade_type>vertical-gradient</shade_type>
+    <pcolor>rgb(114,159,207)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist/>
   </wallpaper>
   <wallpaper deleted="false">
     <name>Something slowly gets clear</name>
@@ -263,15 +263,6 @@
     <artist>Goce Mitevski</artist>
   </wallpaper>
   <wallpaper deleted="false">
-    <name>Storm</name>
-    <filename>/usr/share/backgrounds/mate/nature/Storm.jpg</filename>
-    <options>zoom</options>
-    <shade_type>vertical-gradient</shade_type>
-    <pcolor>rgb(88,145,188)</pcolor>
-    <scolor>rgb(60,143,37)</scolor>
-    <artist>Sergey Nazarov</artist>
-  </wallpaper>
-  <wallpaper deleted="false">
     <name>Something slowly gets clear</name>
     <filename>/usr/share/backgrounds/mate/abstract/Elephants_3840x2160.jpg</filename>
     <options>scaled</options>
@@ -287,7 +278,16 @@
     <shade_type>vertical-gradient</shade_type>
     <pcolor>rgb(114,159,207)</pcolor>
     <scolor>rgb(0,0,0)</scolor>
-    <artist/>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Storm</name>
+    <filename>/usr/share/backgrounds/mate/nature/Storm.jpg</filename>
+    <options>zoom</options>
+    <shade_type>vertical-gradient</shade_type>
+    <pcolor>rgb(88,145,188)</pcolor>
+    <scolor>rgb(60,143,37)</scolor>
+    <artist>Sergey Nazarov</artist>
   </wallpaper>
   <wallpaper deleted="false">
     <name>Blinds</name>
