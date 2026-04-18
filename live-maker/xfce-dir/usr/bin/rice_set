@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Ruta del archivo de marca
+MARKER_FILE="$HOME/.rices.set"
+
+# Aplicar configuración de apariencia personalizada
+runn(){
+    xdg-user-dirs-update && xdg-user-dirs-update --force
+    cp -rf /usr/share/extra/.config/gtk-3.0 "$HOME/.config/"
+    cp -rf /usr/share/extra/.config/gtk-4.0 "$HOME/.config/"
+    cp -rf /usr/share/extra/.config/picom "$HOME/.config/"
+    cp -rf /usr/share/extra/.config/xfce4 "$HOME/.config/"
+    cp -rf /usr/share/extra/.config/fastfetch "$HOME/.config/"
+    cp -rf /usr/share/extra/.config/brand "$HOME/.config/"
+    dconf load / < /usr/share/extra/dotfile.dconf
+    # Refrescar componentes de XFCE
+    # Reiniciar el panel (forma más limpia)
+    xfce4-panel -r
+    # Reiniciar el gestor de ventanas
+    xfwm4 --replace &
+    # Recargar el escritorio
+    xfdesktop --reload 2>/dev/null &
+    # Notificar a las aplicaciones GTK del cambio de tema (opcional)
+    gsettings set org.gtk.Settings.Debug enable-inspector-keybinding false 2>/dev/null || true
+
+    # Pequeña pausa para que todo se estabilice
+    sleep 2
+
+    # Crear el archivo de marca para evitar reejecución
+    touch "$MARKER_FILE"
+    echo "✓ Apariencia XFCE configurada: Juno + pixelitos-dark + Bibata-Gruvbox + edernity.png"
+}
+
+# Verificar si ya se ejecutó la configuración
+if [ -f "$MARKER_FILE" ]; then
+    echo "✓ La configuración de apariencia ya fue aplicada (archivo $MARKER_FILE encontrado)."
+else
+runn
+fi
+

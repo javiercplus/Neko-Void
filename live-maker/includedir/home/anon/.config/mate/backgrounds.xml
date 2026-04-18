@@ -20,6 +20,24 @@
     <artist>Charles Barbin</artist>
   </wallpaper>
   <wallpaper deleted="false">
+    <name>Neko - Kyoko Wallpaper</name>
+    <filename>/usr/share/backgrounds/Neko-KyokoWallpaper.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Neko Kyoko Rose No Text</name>
+    <filename>/usr/share/backgrounds/Neko-KyokoWallpaper-rose-no-text.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
     <name>Fresh Flower</name>
     <filename>/usr/share/backgrounds/mate/nature/FreshFlower.jpg</filename>
     <options>zoom</options>
@@ -27,6 +45,15 @@
     <pcolor>rgb(88,145,188)</pcolor>
     <scolor>rgb(60,143,37)</scolor>
     <artist>Jens Ansorg</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Kyoko 12426426</name>
+    <filename>/usr/share/backgrounds/kyoko12426426.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
   </wallpaper>
   <wallpaper deleted="false">
     <name>Dune</name>
@@ -38,6 +65,15 @@
     <artist>Marco Cogoni, Hylke Bons</artist>
   </wallpaper>
   <wallpaper deleted="false">
+    <name>Edernity</name>
+    <filename>/usr/share/backgrounds/edernity.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
     <name>Wood</name>
     <filename>/usr/share/backgrounds/mate/nature/Wood.jpg</filename>
     <options>zoom</options>
@@ -47,13 +83,22 @@
     <artist>Jean-Fran&#xE7;ois Fortin Tam</artist>
   </wallpaper>
   <wallpaper deleted="false">
-    <name>Green Meadow</name>
-    <filename>/usr/share/backgrounds/mate/nature/GreenMeadow.jpg</filename>
+    <name>Neko Kyoko Rose JP</name>
+    <filename>/usr/share/backgrounds/Neko-KyokoWallpaper-rose-jp.png</filename>
     <options>zoom</options>
-    <shade_type>vertical-gradient</shade_type>
-    <pcolor>rgb(88,145,188)</pcolor>
-    <scolor>rgb(60,143,37)</scolor>
-    <artist>Timothy Schellhase, Lapo Calamandrei</artist>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Neko PNG</name>
+    <filename>/usr/share/backgrounds/neko.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
   </wallpaper>
   <wallpaper deleted="false">
     <name>Green Traditional</name>
@@ -65,6 +110,33 @@
     <artist>l0r4n0n</artist>
   </wallpaper>
   <wallpaper deleted="false">
+    <name>Green Meadow</name>
+    <filename>/usr/share/backgrounds/mate/nature/GreenMeadow.jpg</filename>
+    <options>zoom</options>
+    <shade_type>vertical-gradient</shade_type>
+    <pcolor>rgb(88,145,188)</pcolor>
+    <scolor>rgb(60,143,37)</scolor>
+    <artist>Timothy Schellhase, Lapo Calamandrei</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Kyoko SAFSAF</name>
+    <filename>/usr/share/backgrounds/kyokosafsaf.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Kyoko JSFJSA</name>
+    <filename>/usr/share/backgrounds/kyokojsfjsa.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
     <name>Yellow Flower</name>
     <filename>/usr/share/backgrounds/mate/nature/YellowFlower.jpg</filename>
     <options>zoom</options>
@@ -74,6 +146,15 @@
     <artist>Charles Barbin</artist>
   </wallpaper>
   <wallpaper deleted="false">
+    <name>Kyoko 241</name>
+    <filename>/usr/share/backgrounds/kyoko241.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
     <name>Gulp</name>
     <filename>/usr/share/backgrounds/mate/abstract/Gulp.png</filename>
     <options>zoom</options>
@@ -81,6 +162,15 @@
     <pcolor>rgb(98,127,90)</pcolor>
     <scolor>rgb(39,88,126)</scolor>
     <artist>Daniel Galleguillos, Hylke Bons</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Neko Kyoko Dark JP</name>
+    <filename>/usr/share/backgrounds/Neko-KyokoWallpaper-dark-jp.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
   </wallpaper>
   <wallpaper deleted="false">
     <name>Ubuntu MATE Cold</name>
@@ -119,6 +209,15 @@
     <artist>Goce Mitevski</artist>
   </wallpaper>
   <wallpaper deleted="false">
+    <name>Cosmos</name>
+    <filename>/usr/share/backgrounds/cosmos/background-1.xml</filename>
+    <options>zoom</options>
+    <shade_type>vertical-gradient</shade_type>
+    <pcolor>rgb(114,159,207)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
     <name>Ubuntu MATE Warm</name>
     <filename>/usr/share/backgrounds/mate/desktop/Ubuntu-Mate-Warm-no-logo.png</filename>
     <options>zoom</options>
@@ -128,13 +227,22 @@
     <artist>Goce Mitevski</artist>
   </wallpaper>
   <wallpaper deleted="false">
-    <name>neko.png</name>
-    <filename>/usr/share/wallpapers/neko.png</filename>
+    <name>Neko Kyoko Blue JP</name>
+    <filename>/usr/share/backgrounds/Neko-KyokoWallpaper-blue-jp.png</filename>
     <options>zoom</options>
-    <shade_type>vertical-gradient</shade_type>
-    <pcolor>rgb(114,159,207)</pcolor>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
     <scolor>rgb(0,0,0)</scolor>
-    <artist/>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Moony 3</name>
+    <filename>/usr/share/backgrounds/moony3.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
   </wallpaper>
   <wallpaper deleted="false">
     <name>Something slowly gets clear</name>
@@ -191,6 +299,24 @@
     <artist>Adam Erdman</artist>
   </wallpaper>
   <wallpaper deleted="false">
+    <name>Kyoko 32586230</name>
+    <filename>/usr/share/backgrounds/kyoko32586230.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Neko Kyoko Prueba No Text</name>
+    <filename>/usr/share/backgrounds/Neko-KyokoWallpaper-prueba-no-text.png</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
     <name>Aqua</name>
     <filename>/usr/share/backgrounds/mate/nature/Aqua.jpg</filename>
     <options>zoom</options>
@@ -209,12 +335,12 @@
     <artist>Rowen Stipe</artist>
   </wallpaper>
   <wallpaper deleted="false">
-    <name>No Desktop Background</name>
-    <filename>(none)</filename>
+    <name>Neko Kyoko Green JP</name>
+    <filename>/usr/share/backgrounds/Neko-KyokoWallpaper-green-jp.png</filename>
     <options>zoom</options>
-    <shade_type>vertical-gradient</shade_type>
-    <pcolor>rgb(39,88,126)</pcolor>
-    <scolor>rgb(98,127,90)</scolor>
+    <shade_type>solid</shade_type>
+    <pcolor>rgb(0,0,0)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
     <artist>(none)</artist>
   </wallpaper>
   <wallpaper deleted="false">
@@ -236,6 +362,15 @@
     <artist>Patryk Zawadzki</artist>
   </wallpaper>
   <wallpaper deleted="false">
+    <name>No Desktop Background</name>
+    <filename>(none)</filename>
+    <options>wallpaper</options>
+    <shade_type>vertical-gradient</shade_type>
+    <pcolor>rgb(114,159,207)</pcolor>
+    <scolor>rgb(0,0,0)</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
     <name>Flow</name>
     <filename>/usr/share/backgrounds/mate/abstract/Flow.png</filename>
     <options>zoom</options>
@@ -254,15 +389,6 @@
     <artist>blackcombwhistler07</artist>
   </wallpaper>
   <wallpaper deleted="false">
-    <name>Ubuntu MATE Dark</name>
-    <filename>/usr/share/backgrounds/mate/desktop/Ubuntu-Mate-Dark-no-logo.png</filename>
-    <options>zoom</options>
-    <shade_type>vertical-gradient</shade_type>
-    <pcolor>rgb(88,145,188)</pcolor>
-    <scolor>rgb(60,143,37)</scolor>
-    <artist>Goce Mitevski</artist>
-  </wallpaper>
-  <wallpaper deleted="false">
     <name>Something slowly gets clear</name>
     <filename>/usr/share/backgrounds/mate/abstract/Elephants_3840x2160.jpg</filename>
     <options>scaled</options>
@@ -272,13 +398,13 @@
     <artist>Wyng Stancikaite</artist>
   </wallpaper>
   <wallpaper deleted="false">
-    <name>edernity.png</name>
-    <filename>/usr/share/wallpapers/edernity.png</filename>
+    <name>Ubuntu MATE Dark</name>
+    <filename>/usr/share/backgrounds/mate/desktop/Ubuntu-Mate-Dark-no-logo.png</filename>
     <options>zoom</options>
     <shade_type>vertical-gradient</shade_type>
-    <pcolor>rgb(114,159,207)</pcolor>
-    <scolor>rgb(0,0,0)</scolor>
-    <artist>(none)</artist>
+    <pcolor>rgb(88,145,188)</pcolor>
+    <scolor>rgb(60,143,37)</scolor>
+    <artist>Goce Mitevski</artist>
   </wallpaper>
   <wallpaper deleted="false">
     <name>Storm</name>
