@@ -19,13 +19,13 @@ gsettings set org.mate.interface icon-theme "pixelitos-dark"
 gsettings set org.mate.peripherals-mouse cursor-theme "Bibata-Gruvbox"
 
 # Fondo de pantalla
-gsettings set org.mate.background picture-filename "/usr/share/wallpapers/neko.png"
-gsettings set org.mate.background picture-options "zoom"  
+gsettings set org.mate.background picture-filename "/usr/share/backgrounds/kyoko241.png"
+gsettings set org.mate.background picture-options "stretched"  
 # Opciones: none, wallpaper, centered, scaled, stretched, zoom, spanned
 #Keys
 dconf write /org/mate/marco/global-keybindings/run-command-terminal "'<Alt>Return'"
 dconf write /org/mate/settings-daemon/plugins/media-keys/home "'<Alt>e'"
-
+/usr/share/neko/neko-store
 # Crear el archivo de marca para evitar reejecución
 touch "$MARKER_FILE"
 
