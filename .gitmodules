@@ -1,0 +1,3 @@
+[submodule "Installer"]
+	path = Installer
+	url = https://codeberg.org/javiercplus/Kasha-Installer.git
