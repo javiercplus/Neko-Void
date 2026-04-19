@@ -9,7 +9,7 @@ set -e
 # ─────────────────────────────────────────────
 # Configuración de salida
 # ─────────────────────────────────────────────
-ISO_NAME="nekovoid-beta-6-xlibre.iso"
+ISO_NAME="nekovoid-beta-6.3-xlibre.iso"
 ISO_TITLE="NekoVoid"
 
 # ─────────────────────────────────────────────
@@ -42,6 +42,7 @@ SYSTEM_UTILS="
     unrar
     unzip
     zip
+    xz
     xxd
     btop
     fastfetch
@@ -194,10 +195,6 @@ MULTIMEDIA="
 MULTILIB_32BIT="
     mesa-32bit
     mesa-dri-32bit
-    libgcc-32bit
-    libstdc++-32bit
-    libdrm-32bit
-    libglvnd-32bit
 "
 
 # ─────────────────────────────────────────────
