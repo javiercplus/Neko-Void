@@ -9,7 +9,7 @@ set -e
 # ─────────────────────────────────────────────
 # Configuración de salida
 # ─────────────────────────────────────────────
-ISO_NAME="nekovoid-beta-6-xorg.iso"
+ISO_NAME="nekovoid-beta-6.3-xorg.iso"
 ISO_TITLE="NekoVoid"
 
 # ─────────────────────────────────────────────
@@ -42,6 +42,7 @@ SYSTEM_UTILS="
     unrar
     zip
     xxd
+    xz
     btop
     fastfetch
     curl
@@ -94,8 +95,6 @@ XORG="
     xmirror
     libva-intel-driver
     intel-media-driver
-    xf86-video-amdgpu
-    xf86-video-intel
     orca
 "
 
@@ -193,22 +192,6 @@ MULTIMEDIA="
 MULTILIB_32BIT="
     mesa-32bit
     mesa-dri-32bit
-    libgcc-32bit
-    libstdc++-32bit
-    libdrm-32bit
-    libglvnd-32bit
-    glibc-32bit
-    vulkan-loader-32bit
-    libpulseaudio-32bit
-    freetype-32bit
-    fontconfig-32bit
-    sqlite-32bit
-    libXinerama-32bit
-    libXcursor-32bit
-    gtk+-32bit
-    dbus-glib-32bit
-    nss-32bit
-    nspr-32bit
 "
 
 # ─────────────────────────────────────────────
@@ -258,7 +241,6 @@ ALL_PACKAGES="
     ${FLATPAK}
     ${FONTS}
     ${MULTIMEDIA}
-    ${MULTILIB_32BIT}
     ${GAMING}
     ${OTHER}
     ${ACCESSIBILITY}

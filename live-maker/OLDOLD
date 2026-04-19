@@ -1,0 +1,23 @@
+# ─────────────────────────────────────────────
+# Librerías 32-bit (requeridas para Steam)
+# ─────────────────────────────────────────────
+MULTILIB_32BIT="
+    mesa-32bit
+    mesa-dri-32bit
+    libgcc-32bit
+    libstdc++-32bit
+    libdrm-32bit
+    libglvnd-32bit
+    glibc-32bit
+    vulkan-loader-32bit
+    libpulseaudio-32bit
+    freetype-32bit
+    fontconfig-32bit
+    sqlite-32bit
+    libXinerama-32bit
+    libXcursor-32bit
+    gtk+-32bit
+    dbus-glib-32bit
+    nss-32bit
+    nspr-32bit
+"

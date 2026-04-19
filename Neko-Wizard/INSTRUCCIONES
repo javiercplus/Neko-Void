@@ -1,0 +1,32 @@
+GUIA PARA LA IA
+NEKO MINI STORE
+LEMGUAJE: C con trabajo asincrono + Gtk4 
+MODULARIZADA - CLEAN CODE
+DISEÑO LIMPIO FRESCO y moderno Con un recuadro para instalar cada aplicacion mas barra de progreso
+Instalacion con solo un click
+
+LISTA APLICACIONES + INSTALACION:
+
+Steam flatpak install flathub com.valvesoftware.Steam 
+Heroic Games Launcher sudo xbps-install -Sy heroic-games 
+Faugus Launcher sudo xbps-install -Sy faugus-launcher
+Vesktop sudo xbps-install -Sy vesktop
+Waterfox sudo xbps-install -Sy waterfox
+Zerotierone sudo xbps-install -Sy zerotierone
+Obs   flatpak install flathub com.obsproject.Studio
+PortProton sudo xbps-install portproton
+Hytale wget https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak && flatpak install ./hytale-launcher-latest.flatpak
+Trinity Launcher flatpak install com.trench.trinity.launcher
+ElyPrismLauncher sudo xbps-install elyprismlauncher 
+Kdenlive flatpak install flathub org.kde.kdenlive
+Reaper  flatpak install flathub fm.reaper.Reaper
+
+spotify flatpak install flathub com.spotify.Client
+protonup-qt sudo xbps-install -Sy protonup-qt
+
+Nix Launcher flatpak remote-add --if-not-exists --user flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo & flatpak install flathub-beta io.mrarm.mcpelauncher
+
+---------------
+Mdlplayer
+pymus
+Plug-j 
