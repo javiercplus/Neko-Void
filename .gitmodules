@@ -1,3 +1,6 @@
 [submodule "Installer"]
 	path = Installer
 	url = https://codeberg.org/javiercplus/Kasha-Installer.git
+[submodule "neko-void-packages"]
+	path = neko-void-packages
+	url = https://github.com/javiercplus/neko-void-packages.git
