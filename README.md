@@ -1,4 +1,10 @@
 # Neko-Void Builder
+- Clone repo
+```
+git clone https://codeberg.org/javiercplus/Neko-Void.git
+git submodule update --init --recursive
+```
+
 - Build neko-void iso xorg
 ``` 
 cd live-maker && sh make-nolibre.sh
