@@ -4,3 +4,6 @@
 [submodule "neko-void-packages"]
 	path = neko-void-packages
 	url = https://github.com/javiercplus/neko-void-packages.git
+[submodule "Neko-Wizard"]
+	path = Neko-Wizard
+	url = https://codeberg.org/javiercplus/Neko-Wizard.git
