@@ -1,3 +1,4 @@
+![image](https://huggingface.co/arepaconcafe/neko-base/resolve/main/1.png)
 # Neko-Void Builder
 - Clone repo
 ```
@@ -7,11 +8,21 @@ git submodule update --init --recursive
 
 - Build neko-void iso xorg
 ``` 
-cd live-maker && sh make-nolibre.sh
+cd live-maker && bash make-nolibre.sh
 ```  
 - Build neko-void iso XLIBRE
 ``` 
-cd live-maker && sh make-xlibre.sh
+cd live-maker && bash make-xlibre.sh
+``` 
+
+# for rollings with lastest kernel use 
+- Build neko-void iso xorg
+``` 
+cd live-maker && bash make-rolling-xorg.sh
+```  
+- Build neko-void iso XLIBRE
+``` 
+cd live-maker && bash make-rolling-xlibre.sh
 ``` 
 
 This repo also has repo of neko wizard and kasha installer module!

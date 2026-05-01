@@ -9,7 +9,7 @@ set -e
 # ─────────────────────────────────────────────
 # Configuración de salida
 # ─────────────────────────────────────────────
-ISO_NAME="nekovoid-beta-6.3-xlibre.iso"
+ISO_NAME="nekovoid-beta-7.1-xlibre.iso"
 ISO_TITLE="NekoVoid"
 
 # ─────────────────────────────────────────────
@@ -85,6 +85,7 @@ AUDIO="
     libjack-pipewire
     pavucontrol
     pulsemixer
+    rsync
     volumeicon
 "
 

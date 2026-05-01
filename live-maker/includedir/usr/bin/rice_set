@@ -25,6 +25,7 @@ gsettings set org.mate.background picture-options "stretched"
 #Keys
 dconf write /org/mate/marco/global-keybindings/run-command-terminal "'<Alt>Return'"
 dconf write /org/mate/settings-daemon/plugins/media-keys/home "'<Alt>e'"
+dconf load / < /usr/share/rice/backup_dconf_completo.txt
 /usr/lib/Neko-Wizard/neko-store &
 /usr/bin/mate_monitor &
 # Crear el archivo de marca para evitar reejecución
