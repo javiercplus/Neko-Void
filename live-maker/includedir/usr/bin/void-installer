@@ -97,7 +97,7 @@ WIDGET_SIZE="10 70"
 DIALOG() {
     rm -f $ANSWER
     dialog --colors --keep-tite --no-shadow --no-mouse \
-        --backtitle "${BOLD}${WHITE}Neko-Void installation -- https://www.voidlinux.org (patch by JavierC)${RESET}" \
+        --backtitle "${BOLD}${WHITE}Void Linux installation -- https://www.voidlinux.org (@@MKLIVE_VERSION@@)${RESET}" \
         --cancel-label "Back" --aspect 20 "$@" 2>$ANSWER
     return $?
 }
@@ -105,7 +105,7 @@ DIALOG() {
 INFOBOX() {
     # Note: dialog --infobox and --keep-tite don't work together
     dialog --colors --no-shadow --no-mouse \
-        --backtitle "${BOLD}${WHITE}Neko-Void  installation -- https://www.voidlinux.org (patch by JavierC)${RESET}" \
+        --backtitle "${BOLD}${WHITE}Void Linux installation -- https://www.voidlinux.org (@@MKLIVE_VERSION@@)${RESET}" \
         --title "${TITLE}" --aspect 20 --infobox "$@"
 }
 
@@ -192,7 +192,7 @@ iso639_language() {
     oc)  echo "Occitan" ;;
     om)  echo "Oromo" ;;
     pl)  echo "Polish" ;;
-    pt)  echo "Portugese" ;;
+    pt)  echo "Portuguese" ;;
     ro)  echo "Romanian" ;;
     ru)  echo "Russian" ;;
     sk)  echo "Slovak" ;;
@@ -599,7 +599,9 @@ set_locale() {
         chroot $TARGETDIR xbps-reconfigure -f glibc-locales >$LOG 2>&1
     fi
 }
-
+set_rice() {
+    cp /home/.profile /home/$USERLOGIN/
+}
 menu_timezone() {
     local areas=(Africa America Antarctica Arctic Asia Atlantic Australia Europe Indian Pacific)
 
@@ -821,7 +823,7 @@ set_bootloader() {
 
     # Check if it's an EFI system via efivars module.
     if [ -n "$EFI_SYSTEM" ]; then
-        grub_args="--target=$EFI_TARGET --efi-directory=/boot/efi --bootloader-id=BOOT --recheck"
+        grub_args="--target=$EFI_TARGET --efi-directory=/boot/efi --bootloader-id=void_grub --recheck"
     fi
     echo "Running grub-install $grub_args $dev..." >$LOG
     chroot $TARGETDIR grub-install $grub_args $dev >$LOG 2>&1
@@ -1075,6 +1077,9 @@ as FAT32, mountpoint /boot/efi and at least with 100MB of size." ${MSGBOXSIZE}
 
 create_filesystems() {
     local mnts dev mntpt fstype fspassno mkfs size rv uuid
+
+    # truncate to avoid doubling up
+    : >"$TARGET_FSTAB"
 
     mnts=$(grep -E '^MOUNTPOINT .*' $CONF_FILE | sort -k 5)
     set -- ${mnts}
@@ -1355,6 +1360,12 @@ ${BOLD}Do you want to continue?${RESET}" 20 80 || return
     # Create and mount filesystems
     create_filesystems
 
+    if ! find "$TARGETDIR" -xdev -mindepth 1 -maxdepth 1 -not -name 'lost+found' | read; then
+        DIALOG --msgbox "${BOLD}${RED}ERROR:${RESET} \
+Root partition not empty! Aborting..." ${MSGBOXSIZE}
+        DIE 1
+    fi
+
     SOURCE_DONE="$(get_option SOURCE)"
     # If source not set use defaults.
     if [ "$(get_option SOURCE)" = "local" -o -z "$SOURCE_DONE" ]; then
@@ -1416,7 +1427,8 @@ ${BOLD}Do you want to continue?${RESET}" 20 80 || return
     set_hostname
     set_rootpassword
     set_useraccount
-
+    #RICER
+    set_rice
     # Copy /etc/skel files for root.
     cp $TARGETDIR/etc/skel/.[bix]* $TARGETDIR/root
 
@@ -1450,22 +1462,6 @@ ${BOLD}Do you want to continue?${RESET}" 20 80 || return
 
     if [ -d $TARGETDIR/etc/sudoers.d ]; then
         USERLOGIN="$(get_option USERLOGIN)"
-
-	#copy config of anon - @javierc
-    cp -rf /var/lib/flatpak "$TARGETDIR/var/lib/"
-    mkdir -p "$TARGETDIR/etc/xbps.d/"
-    cp -rf /etc/xbps.d/* "$TARGETDIR/etc/xbps.d/"
-    cp -rf /home/.profile "$TARGETDIR/home/$USERLOGIN/"
-   # cp -rf /home/anon/.icons "$TARGETDIR/home/$USERLOGIN/"
-    cp -rf /home/anon/.themes "$TARGETDIR/home/$USERLOGIN/"
-    #AUTOLOGIN
-    if grep -q "^autologin-user=" /etc/lightdm/lightdm.conf; then
-         sed -i "s/^autologin-user=.*/autologin-user=$USERLOGIN/" "$TARGETDIR/etc/lightdm/lightdm.conf"
-    else
-    # Si no existe, añadirlo después de [Seat:*]
-         sed -i "/^\[Seat:\*\]/a autologin-user=$USERLOGIN" "$TARGETDIR/etc/lightdm/lightdm.conf"
-     fi
-   #SUDO
         if [ -z "$(echo $(get_option USERGROUPS) | grep -w wheel)" -a -n "$USERLOGIN" ]; then
             # enable sudo for primary user USERLOGIN who is not member of wheel
             echo "# Enable sudo for login '$USERLOGIN'" > "$TARGETDIR/etc/sudoers.d/$USERLOGIN"
@@ -1499,7 +1495,7 @@ ${BOLD}Do you want to continue?${RESET}" 20 80 || return
     umount_filesystems
 
     # installed successfully.
-    DIALOG --yesno "${BOLD}Neko-Void has been installed successfully!${RESET}\n
+    DIALOG --yesno "${BOLD}Void Linux has been installed successfully!${RESET}\n
 Do you want to reboot the system?" ${YESNOSIZE}
     if [ $? -eq 0 ]; then
         shutdown -r now

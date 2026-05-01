@@ -25,7 +25,8 @@ gsettings set org.mate.background picture-options "stretched"
 #Keys
 dconf write /org/mate/marco/global-keybindings/run-command-terminal "'<Alt>Return'"
 dconf write /org/mate/settings-daemon/plugins/media-keys/home "'<Alt>e'"
-/usr/share/neko/neko-store
+/usr/lib/Neko-Wizard/neko-store &
+/usr/bin/mate_monitor &
 # Crear el archivo de marca para evitar reejecución
 touch "$MARKER_FILE"
 
@@ -34,6 +35,7 @@ echo "✓ Apariencia MATE configurada: Juno + pixelitos-dark + Bibata-Gruvbox + 
 
 # Verificar si ya se ejecutó la configuración
 if [ -f "$MARKER_FILE" ]; then
+    /usr/bin/mate_monitor &
     echo "✓ La configuración de apariencia ya fue aplicada (archivo $MARKER_FILE encontrado)."
 else
 runn

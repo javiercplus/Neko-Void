@@ -1,4 +1,14 @@
-//COMPILE With gcc -o mate_monitor mate-monitor.c
+/*
+ * mate_monitor.c – Monitor de cambios en directorios de aplicaciones
+ *                  y reinicio automático de mate-panel.
+ *
+ * Compilación:
+ *   gcc -o mate_monitor mate_monitor.c -D_GNU_SOURCE -Wall -Wextra -O2
+ *
+ * Uso:
+ *   ./mate_monitor [-s]
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,105 +18,172 @@
 #include <unistd.h>
 #include <signal.h>
 #include <time.h>
+#include <stdbool.h>
 
-#define CHECK_INTERVAL 5
+#define CHECK_INTERVAL    5      // segundos entre verificaciones
+#define MAX_PATH_LENGTH   256
 
-int silent_mode = 0;
+// Estructura para cada directorio vigilado
+struct FileStats {
+    char path[MAX_PATH_LENGTH];
+    int  count;
+};
 
-void signal_handler(int sig) {
-    if (!silent_mode) printf("\nMonitor detenido.\n");
-    exit(0);
+// --- Variables globales ---
+static volatile sig_atomic_t keep_running = 1;   // bandera de salida gestionada por señales
+static bool silent_mode = false;                // activado con -s
+
+// --- Manejador de señales (mínimo y seguro) ---
+static void signal_handler(int sig) {
+    (void) sig;                 // silencia advertencia
+    keep_running = 0;           // pedimos salida ordenada
 }
 
-int count_desktop_files(const char *path) {
+// --- Configuración de señales ---
+static void setup_signals(void) {
+    struct sigaction sa;
+
+    // Para SIGINT (Ctrl+C) – salida limpia
+    sa.sa_handler = signal_handler;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;
+    sigaction(SIGINT, &sa, NULL);
+
+    // Ignorar SIGCHLD para evitar zombies (el kernel recoge los hijos automáticamente)
+    sa.sa_handler = SIG_IGN;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = SA_NOCLDWAIT;  // no crear zombies, comportamiento moderno
+    sigaction(SIGCHLD, &sa, NULL);
+}
+
+// --- Cuenta archivos .desktop en un directorio ---
+static int count_desktop_files(const char *path) {
     DIR *dir = opendir(path);
-    if (!dir) return 0;
-    
+    if (!dir) {
+        // El directorio puede no existir aún; no es un error crítico
+        if (!silent_mode)
+            fprintf(stderr, "Aviso: no se pudo abrir %s\n", path);
+        return 0;
+    }
+
     int count = 0;
     struct dirent *entry;
     while ((entry = readdir(dir)) != NULL) {
-        char *ext = strrchr(entry->d_name, '.');
-        if (ext && strcmp(ext, ".desktop") == 0) {
+        // Saltamos las entradas especiales . y ..
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+            continue;
+        // ¿Termina en .desktop?
+        const char *ext = strrchr(entry->d_name, '.');
+        if (ext && strcmp(ext, ".desktop") == 0)
             count++;
-        }
     }
     closedir(dir);
     return count;
 }
 
-void execute_pkill() {
-    if (!silent_mode) printf("Ejecutando pkill mate-panel...\n");
-    
+// --- Ejecuta pkill en un proceso hijo ---
+static bool execute_pkill(void) {
     pid_t pid = fork();
+    if (pid == -1) {
+        perror("fork");
+        return false;
+    }
     if (pid == 0) {
         // Proceso hijo
-        setsid();
-        if (silent_mode) {
-            // Modo silencioso
-            execlp("pkill", "pkill", "mate-panel", NULL);
-        } else {
-            // Modo normal
-            execlp("pkill", "pkill", "mate-panel", NULL);
-        }
-        exit(0);
+        setsid();   // nueva sesión, independiza del terminal
+        execlp("pkill", "pkill", "mate-panel", (char *)NULL);
+        perror("execlp");   // solo se ejecuta si execlp falla
+        _exit(EXIT_FAILURE);
     }
+    // Padre: no hace wait porque SIGCHLD está ignorado
+    return true;
 }
 
+// --- Función principal ---
 int main(int argc, char *argv[]) {
-    // Verificar argumento silencioso
-    if (argc > 1 && (strcmp(argv[1], "-s") == 0 || strcmp(argv[1], "--silent") == 0)) {
-        silent_mode = 1;
-    }
-    
-    if (argc > 1 && (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0)) {
-        printf("Uso: %s [-s|--silent]\n", argv[0]);
-        printf("Monitoriza cambios en archivos .desktop y ejecuta pkill mate-panel\n");
-        return 0;
-    }
-    
-    if (!silent_mode) {
-        printf("Monitor de archivos .desktop (pkill version)\n");
-        printf("Monitoreando cambios cada %d segundos...\n", CHECK_INTERVAL);
-        printf("Presiona Ctrl+C para salir\n\n");
-    }
-    
-    signal(SIGINT, signal_handler);
-    
-    char home_path[256];
-    snprintf(home_path, sizeof(home_path), "%s/.local/share/applications", getenv("HOME"));
-    
-    int old_local_count = count_desktop_files(home_path);
-    int old_usr_count = count_desktop_files("/usr/share/applications");
-    
-    if (!silent_mode) {
-        printf("Archivos iniciales: \n");
-        printf("  %s: %d archivos .desktop\n", home_path, old_local_count);
-        printf("  /usr/share/applications: %d archivos .desktop\n\n", old_usr_count);
-    }
-    
-    while (1) {
-        sleep(CHECK_INTERVAL);
-        
-        int new_local_count = count_desktop_files(home_path);
-        int new_usr_count = count_desktop_files("/usr/share/applications");
-        
-        if (new_local_count != old_local_count || new_usr_count != old_usr_count) {
-            if (!silent_mode) {
-                time_t now = time(NULL);
-                struct tm *tm_info = localtime(&now);
-                char time_str[20];
-                strftime(time_str, sizeof(time_str), "%H:%M:%S", tm_info);
-                printf("[%s] Cambios detectados!\n", time_str);
-                printf("  Local: %d -> %d archivos\n", old_local_count, new_local_count);
-                printf("  Usr: %d -> %d archivos\n", old_usr_count, new_usr_count);
-            }
-            
-            old_local_count = new_local_count;
-            old_usr_count = new_usr_count;
-            
-            execute_pkill();
+    // --- Procesar argumentos ---
+    if (argc > 1) {
+        if (strncmp(argv[1], "-s", 2) == 0) {
+            silent_mode = true;
+        } else if (strncmp(argv[1], "-h", 2) == 0) {
+            fprintf(stderr, "Uso: %s [-s]\n", argv[0]);
+            fprintf(stderr, "Monitoriza cambios en .desktop y reinicia mate-panel\n");
+            return EXIT_SUCCESS;
         }
     }
-    
-    return 0;
+
+    // --- Construir rutas ---
+    const char *home = getenv("HOME");
+    if (!home) {
+        fprintf(stderr, "Error: la variable HOME no está definida\n");
+        return EXIT_FAILURE;
+    }
+    char home_desktop[MAX_PATH_LENGTH];
+    snprintf(home_desktop, sizeof(home_desktop),
+             "%s/.local/share/applications", home);
+
+    // --- Inicializar los dos directorios vigilados ---
+    struct FileStats dirs[2];
+    snprintf(dirs[0].path, sizeof(dirs[0].path), "%s", home_desktop);
+    snprintf(dirs[1].path, sizeof(dirs[1].path), "%s", "/usr/share/applications");
+
+    dirs[0].count = count_desktop_files(dirs[0].path);
+    dirs[1].count = count_desktop_files(dirs[1].path);
+
+    if (!silent_mode) {
+        printf("Monitorizando:\n  %s\n  %s\n", dirs[0].path, dirs[1].path);
+        printf("Contadores iniciales: %d, %d\n", dirs[0].count, dirs[1].count);
+    }
+
+    // --- Configurar señales ---
+    setup_signals();
+
+    // --- Bucle principal ---
+    while (keep_running) {
+        sleep(CHECK_INTERVAL);
+        if (!keep_running) break;  // salir inmediatamente si se recibió señal durante sleep
+
+        if (!silent_mode)
+            printf("Verificando cambios...\n");
+
+        bool changed = false;
+
+        // Revisar primer directorio
+        int new_count = count_desktop_files(dirs[0].path);
+        if (new_count != dirs[0].count) {
+            if (!silent_mode)
+                printf("Cambio en %s: %d -> %d\n",
+                       dirs[0].path, dirs[0].count, new_count);
+            dirs[0].count = new_count;
+            changed = true;
+        }
+
+        // Revisar segundo directorio
+        new_count = count_desktop_files(dirs[1].path);
+        if (new_count != dirs[1].count) {
+            if (!silent_mode)
+                printf("Cambio en %s: %d -> %d\n",
+                       dirs[1].path, dirs[1].count, new_count);
+            dirs[1].count = new_count;
+            changed = true;
+        }
+
+        // Actuar si hubo cambios
+        if (changed) {
+            if (!silent_mode)
+                printf("Intentando reiniciar mate-panel...\n");
+            if (execute_pkill()) {
+                if (!silent_mode)
+                    printf("mate-panel reiniciado.\n");
+            } else {
+                if (!silent_mode)
+                    fprintf(stderr, "Fallo al ejecutar pkill.\n");
+            }
+        }
+    }
+
+    if (!silent_mode)
+        printf("Monitor detenido correctamente.\n");
+
+    return EXIT_SUCCESS;
 }

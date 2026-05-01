@@ -9,7 +9,7 @@ set -e
 # ─────────────────────────────────────────────
 # Configuración de salida
 # ─────────────────────────────────────────────
-ISO_NAME="nekovoid-beta-6.5-xorg.iso"
+ISO_NAME="nekovoid-rolling-nvidia.iso"
 ISO_TITLE="NekoVoid"
 
 # ─────────────────────────────────────────────
@@ -229,7 +229,15 @@ ACCESSIBILITY="
 # Driver NVIDIA (descomentar si tienes GPU NVIDIA)
 # ─────────────────────────────────────────────
 #NVIDIA="nvidia nvidia-libs-32bit"
-NVIDIA=""
+NVIDIA="
+    nvidia580
+    nvidia580-dkms
+    nvidia580-firmware
+    nvidia580-libs
+    nvidia580-gtklibs
+    nvidia580-libs-32bit
+    nvidia580-opencl
+"
 
 # ─────────────────────────────────────────────
 # Construir la lista completa de paquetes
@@ -269,4 +277,5 @@ sudo ./mklive.sh \
     -o "${ISO_NAME}" \
     -T "${ISO_TITLE}" \
     -p "${PACKAGES}" \
+    -v linux-mainline \
     -S "dbus elogind NetworkManager lightdm polkitd rtkit sshd chronyd zramen"

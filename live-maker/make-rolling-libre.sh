@@ -9,7 +9,7 @@ set -e
 # ─────────────────────────────────────────────
 # Configuración de salida
 # ─────────────────────────────────────────────
-ISO_NAME="nekovoid-beta-6.5-xorg.iso"
+ISO_NAME="nekovoid-rolling-xlibre.iso"
 ISO_TITLE="NekoVoid"
 
 # ─────────────────────────────────────────────
@@ -95,10 +95,12 @@ AUDIO="
 # Xorg + drivers GPU
 # ─────────────────────────────────────────────
 XORG="
-    xorg
+    xlibre
     xmirror
     libva-intel-driver
     intel-media-driver
+    xlibre-xf86-video-amdgpu
+    xlibre-xf86-video-intel
     orca
 "
 
@@ -269,4 +271,5 @@ sudo ./mklive.sh \
     -o "${ISO_NAME}" \
     -T "${ISO_TITLE}" \
     -p "${PACKAGES}" \
+    -v linux-mainline \
     -S "dbus elogind NetworkManager lightdm polkitd rtkit sshd chronyd zramen"

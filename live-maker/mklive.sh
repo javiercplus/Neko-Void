@@ -28,8 +28,8 @@ umask 022
 
 . ./lib.sh
 
-REQUIRED_PKGS=(base-files libgcc dash coreutils sed tar gawk squashfs-tools xorriso)
-TARGET_PKGS=(base-files)
+REQUIRED_PKGS=(base-files base-system libgcc dash coreutils sed tar gawk squashfs-tools xorriso)
+TARGET_PKGS=(base-files base-system)
 INITRAMFS_PKGS=(binutils xz device-mapper dhclient dracut-network openresolv)
 PACKAGE_LIST=(jq)
 IGNORE_PKGS=()
@@ -530,7 +530,7 @@ while getopts "a:b:r:H:c:C:T:Kk:l:i:I:S:e:s:o:p:g:v:P:x:Vh" opt; do
 	esac
 done
 shift $((OPTIND - 1))
-XBPS_REPOSITORY="$XBPS_REPOSITORY --repository=https://repo-default.voidlinux.org/current --repository=https://repo-default.voidlinux.org/current/multilib --repository=https://repo-default.voidlinux.org/current/multilib/nonfree --repository=https://repo-default.voidlinux.org/current/nonfree --repository=https://repo-default.voidlinux.org/current/musl --repository=https://repo-default.voidlinux.org/current/aarch64 --repository=https://github.com/xlibre-void/xlibre/releases/latest/download --repository=https://sourceforge.net/projects/neko-void/files/repo"
+XBPS_REPOSITORY="$XBPS_REPOSITORY --repository=https://repo-default.voidlinux.org/current --repository=https://repo-default.voidlinux.org/current/musl --repository=https://repo-default.voidlinux.org/current/aarch64 --repository=https://github.com/xlibre-void/xlibre/releases/latest/download --repository=https://sourceforge.net/projects/neko-void/files/repo --repository=https://repo-default.voidlinux.org/current/nonfree --repository=https://repo-default.voidlinux.org/current/multilib/nonfree --repository=https://repo-default.voidlinux.org/current/multilib --repository=https://codeberg.org/javiercplus/Neko-Wizard/releases/download/repo"
 
 # Configure dracut to use overlayfs for the writable overlay.
 BOOT_CMDLINE="$BOOT_CMDLINE rd.live.overlay.overlayfs=1 "
