@@ -3,6 +3,7 @@
 - Clone repo
 ```
 git clone https://codeberg.org/javiercplus/Neko-Void.git
+cd Neko-Void
 git submodule update --init --recursive
 ```
 # Normal Build
