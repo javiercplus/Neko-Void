@@ -5,7 +5,7 @@
 git clone https://codeberg.org/javiercplus/Neko-Void.git
 git submodule update --init --recursive
 ```
-
+# Normal Build
 - Build neko-void iso xorg
 ``` 
 cd live-maker && bash make-nolibre.sh
@@ -15,7 +15,7 @@ cd live-maker && bash make-nolibre.sh
 cd live-maker && bash make-xlibre.sh
 ``` 
 
-# for rollings with lastest kernel use 
+# for rollings with lastest kernel
 - Build neko-void iso xorg
 ``` 
 cd live-maker && bash make-rolling-xorg.sh
